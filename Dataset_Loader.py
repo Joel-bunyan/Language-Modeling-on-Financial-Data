@@ -2,10 +2,6 @@ import psycopg2
 from psycopg2 import sql
 import random
 
-import psycopg2
-from psycopg2 import sql
-import random
-
 def load_data():
     connection = psycopg2.connect(
         user="postgres",
@@ -17,7 +13,7 @@ def load_data():
     connection.autocommit = True
     cursor = connection.cursor()
 
-    database_name = "Savings data"
+    database_name = "Finance---database"
     create_db_query = sql.SQL("CREATE DATABASE {}").format(sql.Identifier(database_name))
     cursor.execute(create_db_query)
     print("Database created successfully!")
@@ -34,18 +30,18 @@ def load_data():
 
     
     create_table_query = """
-    CREATE TABLE Data (
-        Month VARCHAR(255),
-        Salary INT,
-        Saving INT
+    CREATE TABLE table1 (
+        month VARCHAR(255),
+        salary INT,
+        saving INT
     );
     """
     cursor.execute(create_table_query)
 
-    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
     salary = 100000
     query = """
-    INSERT INTO Data (Month, Salary, Saving)
+    INSERT INTO table1 (month, salary, saving)
     VALUES (%s, %s, %s);
     """
     for month in months:
